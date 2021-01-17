@@ -1,0 +1,106 @@
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">RedEast Tasker</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+              </div>
+              <!-- Navbar Right Side -->
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a> 
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a> 
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
+                    <textarea class="form-control" id="chat-text" rows="10" placeholder="Waiting for messages..."
+                        style="resize: none; outline: none; overflow: auto;"
+                    >{% if not user.is_authenticated %}The Website: you will not be able to see the messages till you log in
+                    {% endif %}</textarea><br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="input" type="text"></br>
+                </div>
+                {% if user.is_authenticated %}
+                <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send">
+                {% else %}
+                <input class="btn btn-secondary btn-lg btn-block" type="button" value="Log in first">
+                {% endif %}
+            </form>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ group_add|crispy }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{ request.user.username|json_script:"user_username" }}
+    {{ room_name|json_script:"room-name" }}
+    <script>
+        const user_username = JSON.parse(document.getElementById('user_username').textContent);
+        document.querySelector('#submit').onclick = function (e) {
+            const messageInputDom = document.querySelector('#input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': user_username,
+            }));
+            messageInputDom.value = '';
+        };
+
+
+
+
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            roomName +
+            '/'
+        );
+
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+        }
+    </script>
+</body>
+</html>
