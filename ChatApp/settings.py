@@ -129,6 +129,18 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 ASGI_APPLICATION = 'ChatApp.routing.application'
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': "channels.layers.InMemoryChannelLayer"
+        'BACKEND': "channels.layers.InMemoryChannelLayer",
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL')],
+        }
+    }
+}
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": [os.environ.get('REDIS_URL')],
+        'OPTIONS': {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        }
     }
 }
