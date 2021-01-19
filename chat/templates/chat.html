@@ -13,9 +13,9 @@
     <title>Hello, world!</title>
 </head>
 
-<body>
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+<body  style="background-color: #071a52; color:#ffcdab">
+	<header class="site-header">
+        <nav style="background-color: #086972;" class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
           <a class="navbar-brand mr-4" href="{% url 'home' %}">RedEast Tasker</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,71 +36,98 @@
             </div>
           </div>
         </nav>
-      </header>
+	</header>
 
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
-                    <textarea class="form-control" id="chat-text" rows="10" placeholder="Waiting for messages..."
-                        style="resize: none; outline: none; overflow: auto;"
-                    >{% if not user.is_authenticated %}The Website: you will not be able to see the messages till you log in
-                    {% endif %}</textarea><br>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" id="input" type="text"></br>
-                </div>
-                {% if user.is_authenticated %}
-                <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send">
-                {% else %}
-                <input class="btn btn-secondary btn-lg btn-block" type="button" value="Log in first">
-                {% endif %}
-            </form>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <br>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ group_add|crispy }}
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="container">
+		<br>
+		<div class="row d-flex justify-content-center">
+			<form onsubmit="return false">
+				<div class="form-group" style="text-align: center;">
+					<label for="exampleFormControlTextarea1" class="h4 pt-5">{{ room_name }}</label>
+					<div style="height: auto; width: auto;">
+					<textarea class="form-control" id="chat-text" rows="15" placeholder="Waiting for messages..."
+						style="resize: none; outline: none; overflow: auto; background-color: #071a52; color: white;"
+						value=""
+						disabled
+					>{% if not user.is_authenticated %}you will not be able to see the messages till you log in
+						{% endif %} 
+					</textarea></div><br>
+					</div>
+						<div class="form-group">
+							<input class="form-control" id="input" type="text" autocomplete="off">
+							</br>
+						</div>
+						{% if user.is_authenticated %}
+						<input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send" style="background: linear-gradient(to right, rgb(221, 62, 84), #17b978);">
+						{% else %}
+						<a class="btn btn-secondary btn-lg btn-block" type="button" href="{% url 'login' %}">Log in first</a>
+						{% endif %}
+			</form>
+		</div>
+		<div class="row d-flex justify-content-center">
+			<br>
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="form-group" style="text-align: center; font-size: 20px;">
+					<h2>Enter New Group</h2>
+					{{ group_add.group_name }}
+				</div>
+			</form>
+		</div>
+	</div>
 
-    {{ request.user.username|json_script:"user_username" }}
-    {{ room_name|json_script:"room-name" }}
-    <script>
-        const user_username = JSON.parse(document.getElementById('user_username').textContent);
-        document.querySelector('#submit').onclick = function (e) {
-            const messageInputDom = document.querySelector('#input');
-            const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message,
-                'username': user_username,
-            }));
-            messageInputDom.value = '';
-        };
+	{{ request.user.username|json_script:"user_username" }}
+	{{ room_name|json_script:"room-name" }}
+	<script>
+		const user_username = JSON.parse(document.getElementById('user_username').textContent);
+
+		document.querySelector('#submit').onclick = function (e) {
+			const messageInputDom = document.querySelector('#input');
+			const message = messageInputDom.value;
+			chatSocket.send(JSON.stringify({
+				'message': message,
+				'username': user_username,
+			}));
+			messageInputDom.value = '';
+		};
+
+		
 
 
 
 
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        const chatSocket = new WebSocket(
-            'ws://' +
-            window.location.host +
-            '/ws/chat/' +
-            roomName +
-            '/'
-        );
 
-        chatSocket.onmessage = function (e) {
-            const data = JSON.parse(e.data);
-            console.log(data)
-            document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
-        }
-    </script>
+		const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+		const chatSocket = new WebSocket(
+			'ws://' +
+			window.location.host +
+			'/ws/chat/' +
+			roomName +
+			'/'
+		);
+		document.querySelector('#chat-text').value = ""
+		chatSocket.onmessage = function (e) {
+			const data = JSON.parse(e.data);
+			console.log(data)
+			document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+		}
+
+
+		document.querySelector('#input').addEventListener('keypress', function (e) {
+			if (e.key === 'Enter') {
+				const messageInputDom = document.querySelector('#input');
+				const message = messageInputDom.value;
+				chatSocket.send(JSON.stringify({
+					'message': message,
+					'username': user_username,
+				}));
+				messageInputDom.value = '';
+			}
+		}, false)
+
+
+	</script>
 </body>
 </html>

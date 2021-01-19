@@ -4,17 +4,14 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 class ChatRoomConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        print('works\n\n\n\n\n')
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        print('works')
         self.room_group_name = 'chat_%s' % self.room_name
 
-        print('works')
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
         )
-        print('works')
+        print('room entered: '+self.room_name)
 
         await self.accept()
 
@@ -46,5 +43,5 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
             'message': message,
             'username': username,
         }))
-
+        print(username + ':', message)
     pass
