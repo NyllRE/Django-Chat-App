@@ -1,6 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load crispy_forms_tags %}
-{% block main %}
+{% block first-title %}
+  This is Profile
+{% endblock %}
+{% block title %}
+  Bruh
+{% endblock %}
+
+{% block buttons %}
   <div class="content-section">
     <div class='media'>
       <img class='rounded-circle bg-dark account-img' src='{{ user.profile.image.url }}'>
@@ -11,4 +18,11 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block nav %}
+<a
+href="{% url 'home-url' %}"
+class="h-links"
+>Home</a>
 {% endblock %}

@@ -1,23 +1,45 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load crispy_forms_tags %}
 
-{% block main %}
-  <div class="content-section">
-    <form method="POST">{% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">
-          Join Today
-        </legend>
-        {{ form|crispy }}
-      </fieldset>
-      <div class="form-group"> 
-        <button class="btn btn-outline-info" type="submit">Sign In</button>
-      </div>
-    </form>
-    <div class="border-top pt-3">
-      <small class="text-muted mg-6">
-         Need An account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
-      </small>
-    </div>
-  </div>
+{% block first-title %}
+Returning I see..
 {% endblock %}
+
+{% block title %}
+Log In!
+
+{% endblock %}
+
+{% block buttons %}
+<div class="auth" style="opacity: 0;">
+  <form method="POST">{% csrf_token %}
+
+    <div class="un" style="float: left; position: relative; right: -25%">
+      <h2>Username</h2>
+      {{ form.username }}
+    </div>
+    <div class="pw" style="float: right; position: relative; left: -25%">
+      <h2>Password</h2>
+      {{ form.password }}
+    </div>
+
+    <div class="form-group"> 
+      <button class="btn btn-outline-info" type="submit">Sign In</button>
+    </div>
+    <br>
+      <h5 class="text-muted">
+         Don't Have An Account? <a class="ml-2" href="{% url 'register' %}" style="text-decoration: none; color: cadetblue;">Sign Up!</a>
+      </h5>
+  </form>
+</div>
+{% endblock %}
+
+{% block anime %}.add({
+  targets: '.auth',
+  opacity: [0,1],
+  duration: 1000,
+  delay: 200,
+  easing: 'easeOutExpo',
+  scale: [0.5, 1],
+  delay: (el, i) => 40 * (i+1)
+}){% endblock %}

@@ -10,7 +10,88 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+		<title>Hello, world!</title>
+		<style>
+			.chat {
+				display: table;
+				width: 100%;
+				height: 93%;
+			}
+			.side-box {
+				width: 20%;
+				height: 50%;
+				background-color: rgb(58 79 110);
+				position: relative;
+				left: 0;
+				display: table-cell;
+				border-top-left-radius: 30px;
+			}
+			.message-box {
+				background-image: url('https://cdn.discordapp.com/attachments/573914557102292993/801047867262763018/bg.webp');
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+				width: 60%;
+				right: 0;
+				display: table-cell;
+				overflow: auto;
+				border-top-right-radius: 30px;
+				padding: 5px;
+			}
+			.message {
+				background: #000;
+				width: fit-content;
+				height: auto;
+				min-height: 50px;
+				min-width: 30%;
+				max-width: 80%;
+				border-radius: 15px;
+				padding: 7px;
+				margin: 15px;
+				word-wrap: break-word;
+			}
+			.msg-container {
+				width: 100%;
+				position: relative;
+				text-align: center;
+			}
+			.other-user {
+				position: relative;
+				text-align: right;
+				right: 0;
+				background-color: rgb(99, 7, 99);
+				margin-left: auto;
+			}
+			.self-user {
+				background-color: rgb(40, 33, 106);
+			}
+			h5.name { 
+				background-color: rgb(35, 28, 91);
+				padding: 5px;
+				border-radius: 15px;
+			}
+			.chat button, .change-group {
+				display: table-cell;
+			}
+			.change-group {
+				display: table-cell;
+				width: 30%;
+				background: linear-gradient(to top, rgb(169, 51, 92), rgb(58 79 110));
+				border-bottom-left-radius: 30px;
+			}
+			.scnd-row {
+				display: table-row;
+			}
+			.send-msg {
+				display: table-cell;
+				
+			  
+				background-color: rgb(33, 1, 68);
+				padding: 5px;
+				height: 10%;
+				border-bottom-right-radius: 30px;
+			}
+		</style>
 </head>
 
 <body  style="background-color: #071a52; color:#ffcdab">
@@ -37,66 +118,142 @@
           </div>
         </nav>
 	</header>
+	<br><br><br>
+	<div class="chat container">
+		<div class="side-box">
 
-	<div class="container">
-		<br>
-		<div class="row d-flex justify-content-center">
-			<form onsubmit="return false">
-				<div class="form-group" style="text-align: center;">
-					<label for="exampleFormControlTextarea1" class="h4 pt-5">{{ room_name }}</label>
-					<div style="height: auto; width: auto;">
-					<textarea class="form-control" id="chat-text" rows="15" placeholder="Waiting for messages..."
-						style="resize: none; outline: none; overflow: auto; background-color: #071a52; color: white;"
-						value=""
-						disabled
-					>{% if not user.is_authenticated %}you will not be able to see the messages till you log in
-						{% endif %} 
-					</textarea></div><br>
-					</div>
-						<div class="form-group">
-							<input class="form-control" id="input" type="text" autocomplete="off">
-							</br>
+			<div class="container"> <br>
+				<div class="row d-flex justify-content-center">
+					<form onsubmit="return false">
+						<div class="form-group" style="text-align: center;">
+							<label for="exampleFormControlTextarea1" class="h4 pt-5">{{ room_name }}</label>
+							<div style="height: auto; width: auto;">
+								<textarea class="form-control" id="chat-text" rows="15" placeholder="{% if not user.is_authenticated %}you will not be able to see the messages till you log in{% else %}Waiting for messages...{% endif %}"
+									style="resize: none; outline: none; overflow: auto; background-color: #071a52; color: white; width: 100%;"
+									value=""
+									disabled
+								>
+								</textarea>
+							</div><br>
 						</div>
-						{% if user.is_authenticated %}
-						<input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send" style="background: linear-gradient(to right, rgb(221, 62, 84), #17b978);">
-						{% else %}
-						<a class="btn btn-secondary btn-lg btn-block" type="button" href="{% url 'login' %}">Log in first</a>
-						{% endif %}
-			</form>
-		</div>
-		<div class="row d-flex justify-content-center">
-			<br>
-			<form action="" method="post">
-				{% csrf_token %}
-				<div class="form-group" style="text-align: center; font-size: 20px;">
-					<h2>Enter New Group</h2>
-					{{ group_add.group_name }}
+								<!-- <div class="form-group">
+									<input class="form-control" id="input" type="text" autocomplete="off">
+									</br>
+								</div>
+								{% if user.is_authenticated %}
+								<input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send" style="background: linear-gradient(to right, rgb(221, 62, 84), #17b978);">
+								{% else %}
+								<a class="btn btn-secondary btn-lg btn-block" type="button" href="{% url 'login' %}">Log in first</a>
+								{% endif %} -->
+					</form>
 				</div>
-			</form>
+				
+				<button id="tester">
+					ee3
+				</button>
+			</div>
+
+		</div>
+		<div class="message-box">
+		
+			<div class="msg-container">
+				<div class="message other-user">
+					<h5 class="name" onclick='console.log(this.innerHTML = ("<h6>" + new Date().toString().slice(16, 24) + "</h6> | " + this.innerHTML))'>
+						RedEast Chat Site
+					</h5>
+					<h2 class="msg-text">
+						{% if not user.is_authenticated %}you will not be able to see the messages till you log in{% else %}Welcome To The Chat!{% endif %}
+					</h2>
+				</div>
+			</div>
+			
+		
+		</div>
+		<div class="scnd-row">
+			<div class="change-group">
+				<div class="row d-flex justify-content-center">
+					<br>
+					<form action="" method="post">
+						{% csrf_token %}
+						<div class="form-group" style="text-align: center; font-size: 20px;">
+							<h2>Enter New Group</h2>
+							{{ group_add.group_name }}
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="send-msg">
+				<div class="form-group">
+					<textarea class="form-control" id="input" type="text" autocomplete="off" style="resize: none;" rows="3"></textarea>
+					</br>
+				</div>
+				{% if user.is_authenticated %}
+				<input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send" style="background: linear-gradient(to right, rgb(221, 62, 84), #17b978);">
+				{% else %}
+				<a class="btn btn-secondary btn-lg btn-block" type="button" href="{% url 'login' %}">Log in first</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
-
 	{{ request.user.username|json_script:"user_username" }}
 	{{ room_name|json_script:"room-name" }}
 	<script>
+		addEventListener('click', document.querySelector('.name'), function() {
+			console.log(this.innerHTML);
+		});
+
 		const user_username = JSON.parse(document.getElementById('user_username').textContent);
+
+		document.querySelector('#input').addEventListener('keypress', function (e) {
+			if (e.key !== 'Enter'){return false}
+			const messageInputDom = document.querySelector('#input');
+			const message = messageInputDom.value;
+			if (message == '') {return false};
+				chatSocket.send(JSON.stringify({
+					'message': message,
+					'username': user_username,
+				}));
+				
+				document.querySelector('.message-box').innerHTML += (`
+					<div class='message  ` + 'self-user' + `'>
+						<h5 class='name'>
+							` + user_username + ` | ` + (new Date().toString().slice(16, 21)).toString() + ` 
+						</h5>
+						<h2 class='msg-text'> 
+							` + message + `
+						</h2>
+					</div>
+				`);
+				messageInputDom.value = '';
+		}, false);
 
 		document.querySelector('#submit').onclick = function (e) {
 			const messageInputDom = document.querySelector('#input');
 			const message = messageInputDom.value;
-			chatSocket.send(JSON.stringify({
-				'message': message,
-				'username': user_username,
-			}));
-			messageInputDom.value = '';
+			if (message == '') {return false};
+				chatSocket.send(JSON.stringify({
+					'message': message,
+					'username': user_username,
+				}));
+				document.querySelector('.message-box').innerHTML += (`
+					<div class='message  ` + 'self-user' + `'>
+						<h5 class='name'>
+							` + user_username + ` | ` + (new Date().toString().slice(16, 21)).toString() + ` 
+						</h5>
+						<h2 class='msg-text'> 
+							` + message + `
+						</h2>
+					</div>
+				`);
+				messageInputDom.value = '';
 		};
 
 		
 
+		// Display the result in the element with id="demo"
 
-
-
-
+		// var demo = days + "days and " + hours + "hours" + minutes + "m " + seconds + "s ";
+		// console.log(demo);
 
 		const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
@@ -110,23 +267,33 @@
 		document.querySelector('#chat-text').value = ""
 		chatSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
-			console.log(data)
-			document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
-		}
-
-
-		document.querySelector('#input').addEventListener('keypress', function (e) {
-			if (e.key === 'Enter') {
-				const messageInputDom = document.querySelector('#input');
-				const message = messageInputDom.value;
-				chatSocket.send(JSON.stringify({
-					'message': message,
-					'username': user_username,
-				}));
-				messageInputDom.value = '';
+			console.log(data);
+			document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n');
+			if (data.username == user_username) {
+				const declare = 'self-user'
+			} else {
+				const declare = 'other-user'
 			}
-		}, false)
-
+			document.querySelector('.message-box').innerHTML += ('<div class="message ' + declare + '"><h2 class="name">' + data.username + ' | ' + (new Date().toString().slice(16, 24).toString() + '</h2><h5 class="msg-text">' + data.message + '</h5></div>'))
+		}
+		document.querySelector('#tester').onclick = function tstmsg() {
+			const messageInputDom = document.querySelector('#input');
+			const message = messageInputDom.value;
+			if (message == '') {return}
+			console.log('hi');
+			document.querySelector('.message-box').innerHTML += (`
+						<div class='message  ` + 'self-user' + `'>
+							<h5 class='name'>
+								HAMOUDE | ` + (new Date().toString().slice(16, 21)).toString() + ` 
+							</h5>
+							<h2 class='msg-text'> 
+								` + message + `
+							</h2>
+						</div>
+					`);
+			messageInputDom.value = '';
+			// document.querySelector('.message-box').innerHTML += (`'</h2><h5 class="msg-text">' + data.message + '</h5></div>`);
+		}
 
 	</script>
 </body>

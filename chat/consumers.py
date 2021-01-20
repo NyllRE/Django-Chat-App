@@ -11,7 +11,6 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
-        print('room entered: '+self.room_name)
 
         await self.accept()
 
@@ -43,5 +42,4 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
             'message': message,
             'username': username,
         }))
-        print(username + ':', message)
     pass

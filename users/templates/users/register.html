@@ -1,23 +1,61 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load crispy_forms_tags %}
+
+{% block first-title %}
+New In Town?
+{% endblock %}
+
+{% block title %}
+Sign Up!
+{% endblock %}
+
+{% block buttons %}
+<div class="auth" style="opacity: 0;">
+  <form method="POST">{% csrf_token %}
+
+    <div class="un" style="float: left; position: relative; right: -15%">
+      <h2>Username</h2>
+      {{ form.username }}
+      <h2>Email</h2>
+      {{ form.email }}
+    </div>
+    <div class="pw" style="float: right; position: relative; left: -15%">
+      <h2>Password</h2>
+      {{ form.password1 }}
+      <br><br>
+      <h4>Password again</h4>
+      {{ form.password2 }}
+    </div>
+
+    <div class="form-group"> 
+      <button class="btn btn-outline-info" type="submit">Sign Up</button>
+    </div>
+    <br>
+      <h5 class="text-muted">
+         Already have an account? <a class="ml-2" href="{% url 'login' %}" style="text-decoration: none; color: cadetblue;">Sign In</a>
+      </h5>
+  </form>
+</div>
+{% endblock %}
+
+{% block anime %}.add({
+  targets: '.auth',
+  opacity: [0,1],
+  duration: 1000,
+  delay: 200,
+  easing: 'easeOutExpo',
+  scale: [0.5, 1],
+  delay: (el, i) => 40 * (i+1)
+}){% endblock %}
+
+
 
 {% block main %}
   <div class="content-section">
     <form method="POST">{% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">
-          Join Today
-        </legend>
-        {{ form|crispy }}
-      </fieldset>
-      <div class="form-group"> 
-        <button class="btn btn-outline-info" type="submit">Sign Up</button>
-      </div>
+ 
     </form>
     <div class="border-top pt-3">
-      <small class="text-muted">
-         Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-      </small>
     </div>
   </div>
 {% endblock %}

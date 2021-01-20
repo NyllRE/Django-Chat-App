@@ -1,168 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    @font-face {
-      font-family: "San Francisco";
-      font-weight: 600;
-      src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");
-    }
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    html {
-      width:100%;
-      height:100%;
-    }
-    body {
-      font-family: 'San Francisco';
-      /* height: 100%;
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<style>
+			@font-face {
+				font-family: 'San Francisco';
+				font-weight: 600;
+				src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff');
+			}
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				font-family: 'San Francisco';
+				/* height: 100%;
       width: 100%; */
-      background-image: url('https://cdn.discordapp.com/attachments/573914557102292993/801047867262763018/bg.webp');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-    }
-    header {
-      position: absolute;
-      width:100%;
-      height:100%;
-      color: white;
-      text-align: center;
-      top: -30%;
-    }
-    header img {
-      width:100px;
-      vertical-align: middle;
-      animation: image-shaker 3s 1s infinite;
-    }
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      height: 50%;
-      text-align: center;
-      vertical-align: middle;
-      border-radius: 30px;
-      box-shadow: 0px 0px 50px rgba(0,0,0,0.5);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(7px);
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-left: 1px solid rgba(255, 255, 255, 0.5);
-      min-width: 313px;
-      min-height: 212px;
-    }
-    .content {
-      color: wheat;
-      position: relative;
-      top: 40%;
-    }
-    .content a {
-      text-decoration: none;
-    }
-    h1 {
-      font-size: 40px;
-    }
-    h2 {
-      font-size: 20px;
-    }
-    button {
-      background: rgba(255, 255, 255, 0.131);
-      border: none;
-      padding: 5px;
-      border-radius: 5px;
-      box-shadow: 0px 0px 20px #00000090;
-      transition: 0.3s;
-    }
-    button:hover, button:focus {
-      background: rgb(101, 78, 163);
-      color: #fff;
-      box-shadow: 0px 0px 50px #00000090;
-      transform: scale(1.1);
-    }
+				background-image: url('https://cdn.discordapp.com/attachments/573914557102292993/801047867262763018/bg.webp');
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+			header {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				color: white;
+				text-align: center;
+				top: -30%;
+			}
+			header img {
+				width: 100px;
+				vertical-align: middle;
+				animation: image-shaker 3s 1s infinite;
+			}
+			.container {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 50%;
+				height: 50%;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 30px;
+				box-shadow: 0px 0px 50px
+					rgba(0, 0, 0, 0.5);
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(7px);
+				border-top: 1px solid
+					rgba(255, 255, 255, 0.5);
+				border-left: 1px solid
+					rgba(255, 255, 255, 0.5);
+				min-width: 313px;
+				min-height: 212px;
+			}
+			.content {
+				color: wheat;
+				position: relative;
+				top: 40%;
+			}
+			.content a {
+				text-decoration: none;
+			}
+			h1 {
+				font-size: 40px;
+			}
+			h2 {
+				font-size: 20px;
+			}
+			button {
+				background: rgba(255, 255, 255, 0.131);
+				border: none;
+				padding: 5px;
+				border-radius: 5px;
+				box-shadow: 0px 0px 20px #00000090;
+				transition: 0.3s;
+			}
+			button:hover,
+			button:focus {
+				background: rgb(101, 78, 163);
+				color: #fff;
+				box-shadow: 0px 0px 50px #00000090;
+				transform: scale(1.2);
+			}
 
-    @keyframes image-shaker {
-      0% {
-        transform: translate(0px, 0px);
+			input {
+				border-radius: 5px;
+				border: none;
+				animation: text-input 3s 0s alternate;
+
+				color: #fff;
+				background-color: #000;
+				transition: 0.3s;
+			}
+			input:focus-visible {
+				color: #000;
+				background-color: #fff;
+			}
+
+			@keyframes text-input {
+				0% {
+					transform: rotate(5deg);
+				}
+				25% {
+					color: rgb(62, 38, 148);
+					background-color: rgb(62, 38, 148);
+				}
+				50% {
+				}
+				75% {
+					transform: rotate(-3deg);
+					color: rgb(0, 0, 0);
+					background-color: #fff;
+				}
+				100% {
+					transform: rotate(0deg);
+					color: #fff;
+					background-color: #000;
+				}
+			}
+      .h-links-holder {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 2rem;
       }
-      25% {
-        transform: rotate(5deg) translate(10px, 5px);
+      .h-links {
+        text-decoration: none;
+        color: #fff;
+        text-shadow: 0px;
+        
       }
-      50% {
-        transform: rotate(-5deg) translate(-10px, 5px);
+      .h-links:hover {
+        
       }
-      75% {
-        transform: rotate(0deg) translate(0px, -5px);
-      }
-      100% {
-        transform: rotate(0deg) translate(0px, 0px);
-      }
-    /* }
+			@keyframes image-shaker {
+				0% {
+					transform: translate(0px, 0px);
+				}
+				25% {
+					transform: rotate(5deg)
+						translate(30px, 10px);
+				}
+				50% {
+					transform: rotate(-5deg)
+						translate(-30px, 10px);
+				}
+				75% {
+					transform: rotate(0deg)
+						translate(0px, -10px);
+				}
+				100% {
+					transform: rotate(0deg)
+						translate(0px, 0px);
+				}
+			}
+			/* }
     @keyframes example {
       0%   {background-color: red;    transform: scale(0.5);}
       25%  {background-color: yellow; transform: scale(1.5)}
       50%  {background-color: blue;   transform: scale(0.9)}
       100% {background-color: green;  transform: scale(1)}
     } */
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>
-      <img src="https://cdn.discordapp.com/attachments/745413985515471058/801066875341242428/ReMicrosoftApple1.1.png" 
-           alt="RE Logo" 
-           srcset="">
-      </h1>
-    </header>
-    <div class="content">
-      <h1 class="ml3">Welcome to RedEast's Chat App</h1>
-      <h2 class="ml3">Get Started With The Worst Chatting Website Now!</h2>
-      <br>
-      <br>
-      <a 
-        class="ml-2" 
-        href="/chat/main">
-        <button>
-          Enter Main Chat
-        </button>
-      </a>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script>
-    var textWrapper = document.querySelector('.ml3');
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<a href="https://discord.link/redeast">
+					<img
+						src="https://cdn.discordapp.com/attachments/745413985515471058/801066875341242428/ReMicrosoftApple1.1.png"
+						alt="RE Logo"
+						srcset=""
+						onmousedown="console.log('bruh')"
+					/>
+				</a>
+				<div class="h-links-holder">
+          {% block nav %}
+          <a
+          href="{% url 'profile' %}"
+          class="h-links"
+          >Profile</a>
+          {% endblock %}
+          {% if not user.is_authenticated %}
+					<a
+						href="{% url 'login' %}"
+						class="h-links"
+						> - Log In</a
+          >
+          {% else %}
+					<a
+						href="{% url 'logout' %}"
+						class="h-links"
+						> - Logout</a
+          >
+          {% endif %}
+        </div>
+			</header>
+			<div class="content">
+				<h1 class="ml3"
+					>{% block first-title %}Welcome to
+					RedEast's Chat App{% endblock %}</h1
+				>
+				<h1
+					class="ml4"
+					style="
+						position: relative;
+						transform: translate(0px, -50px);
+					"
+					>{% block title %}Get Started With The
+          Worst Chatting Website Now!
+          {%endblock%}</h1
+				>
+				<br />
+				<br />
+				{% block buttons %} {% if user.is_authenticated %}
+				<a class="ml-2" href="/chat/main">
+					<button class="ml-3">
+						Enter Main Chat
+					</button>
+				</a>
+				{% else %}
+				<a class="ml-2" href="/register">
+					<button
+						class="ml-3"
+						style="
+							background: linear-gradient(
+								to left,
+								rgb(192, 21, 81),
+								red
+							);
+							color: white;
+						"
+					>
+						Register
+					</button>
+				</a>
+				{% endif %} {% endblock %}
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+		<script>
 
-    anime.timeline({loop: false})
-      .add({
-        targets: '.ml3 .letter',
-        opacity: [0,1],
-        easing: "easeInOutQuad",
-        duration: 500,
-        delay: (el, i) => 50 * (i+1)
-      }).add({
-        targets: '.ml3',
-        opacity: 0,
-        duration: 500,
-        easing: "easeOutExpo",
-        delay: 200,
-        scale: 0.9
-      }).add({
-        targets: '.ml3',
-        opacity: 1,
-        duration: 1000,
-        easing: "easeOutElastic",
-        delay: 200,
-        scale: 1,
-      });;
+			var textWrapper = document.querySelector('.ml3');
+			var textWrapper2 = document.querySelector('.ml4');
+			textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+			textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, "<span class='letter2'>$&</span>");
 
-  </script>
-</body>
+			anime.timeline({loop: false})
+			  .add({
+			    targets: '.ml3 .letter',
+			    delay: 1500,
+			    opacity: [0,1],
+			    easing: "easeInOutQuad",
+			    duration: 1000,
+			    delay: (el, i) => 50 * (i+1),
+			  }).add({
+			    targets: '.ml3',
+			    opacity: 0,
+			    duration: 400,
+			    easing: "easeOutExpo",
+			    delay: 200,
+			    scale: 0.9
+			  }){% block anime %}.add({    //this is the button
+			    targets: '.ml-2 .ml-3',
+			    duration: 300,
+			    delay: 0,
+			    opacity: [0,1]
+			  }){% endblock %}.add({
+			    targets: '.ml4 .letter2',
+			    opacity: [0,1],
+			    duration: 3000,
+			    delay: 500,
+			    /* scale: 1, */
+			    delay: (el, i) => 40 * (i+1)
+			  });
+		</script>
+	</body>
 </html>
