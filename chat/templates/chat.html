@@ -13,6 +13,28 @@
 
 		<title>{{ room_name }}</title>
 		<link rel="stylesheet" href="{% static 'chat.css' %}">
+		<style>
+			.other-user {
+				position: relative;
+				text-align: right;
+				right: 0;
+				background-color: rgb(99, 7, 99);
+				margin-left: auto;
+			}
+			.other-user h5 { 
+				background-color: rgb(68, 10, 68);
+				padding: 5px;
+				border-radius: 15px;
+			}
+			.self-user {
+				background-color: rgb(40, 33, 106);
+			}
+			.self-user h5 { 
+				background-color: rgb(35, 28, 91);
+				padding: 5px;
+				border-radius: 15px;
+			}
+		</style>
 </head>
 
 <body  style="background-color: #071a52; color:#ffcdab">
@@ -20,7 +42,7 @@
 	<header class="site-header">
         <nav style="background-color: #086972;" class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'home' %}">RedEast Tasker</a>
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">RedEast Chat</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -70,9 +92,11 @@
 					</form>
 				</div>
 				
-				<button id="tester">
-					ee3
+				{% if user.is_authenticated %}
+				<button id="tester" style="margin-left: 50%;transform: translate(-50%, 0);">
+					testing button
 				</button>
+				{% endif %}
 			</div>
 
 		</div>
