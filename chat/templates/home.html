@@ -11,7 +11,7 @@
 		<style>
 
 		</style>
-		<link rel="stylesheet" href="{% static 'main.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'chatapp/main.css' %}" type="text/css">
 	</head>
 	<body>
 		<div class="container">
@@ -87,7 +87,7 @@
 			textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, "<span class='letter2'>$&</span>");
 
 			anime.timeline({loop: false})
-			.add({
+				.add({
 					targets: '.h-links-holder .h-links',
 					delay: 1000,
 					opacity: [0,1],

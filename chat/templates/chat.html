@@ -12,7 +12,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 		<title>{{ room_name }}</title>
-		<link rel="stylesheet" href="{% static 'chat.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'chatapp/chat.css' %}" type="text/css">
 		<style>
 			.other-user {
 				position: relative;
@@ -37,8 +37,43 @@
 		</style>
 </head>
 
-<body  style="background-color: #071a52; color:#ffcdab">
-	<div class="cover"></div>
+<body  style="background-color: #071a52; color:#ffcdab;">
+
+	<div class="loader-container hidden">
+		<div class="loader">
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<div class="drip"></div>
+			<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+				<defs>
+					<filter id="goo">
+						<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+						<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+						<feBlend in="SourceGraphic" in2="goo" />
+					</filter>
+				</defs>
+			</svg>
+		
+		</div>
+	</div>
+
 	<header class="site-header">
         <nav style="background-color: #086972;" class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
@@ -62,6 +97,7 @@
           </div>
         </nav>
 	</header>
+
 	<br><br><br>
 	<div class="chat container">
 		<div class="side-box">
@@ -142,6 +178,6 @@
 	</div>
 	{{ request.user.username|json_script:"user_username" }}
 	{{ room_name|json_script:"room-name" }}
-	<script src="{% static 'chat.js' %}"></script>
+	<script src="{% static 'chatapp/chat.js' %}"></script>
 </body>
 </html>
