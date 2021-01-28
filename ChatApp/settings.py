@@ -132,9 +132,9 @@ ASGI_APPLICATION = 'ChatApp.routing.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': "channels.layers.InMemoryChannelLayer",
-        # 'CONFIG': {
-        #     "hosts": [os.environ.get('REDIS_URL')],
-        # }
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL')],
+        }
     }
 }
 CACHES = {

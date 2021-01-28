@@ -111,45 +111,45 @@ body {
 
 .loader-container .loader .drip:nth-child(1) {
   border-color: red;
-  height: 8px;
-  width: 8px;
+  height: 38px;
+  width: 38px;
   -webkit-animation-delay: -0.2s;
           animation-delay: -0.2s;
   background: red;
-  left: 44px;
+  left: 3px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(2) {
   border-color: red;
-  height: 36px;
-  width: 36px;
+  height: 17px;
+  width: 17px;
   -webkit-animation-delay: -0.4s;
           animation-delay: -0.4s;
   background: red;
-  left: 178px;
+  left: 111px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(3) {
   border-color: red;
-  height: 27px;
-  width: 27px;
+  height: 39px;
+  width: 39px;
   -webkit-animation-delay: -0.6s;
           animation-delay: -0.6s;
   background: red;
-  left: 2px;
+  left: 41px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(4) {
   border-color: red;
-  height: 35px;
-  width: 35px;
+  height: 28px;
+  width: 28px;
   -webkit-animation-delay: -0.8s;
           animation-delay: -0.8s;
   background: red;
-  left: 151px;
+  left: 143px;
   margin-left: 60px;
 }
 
@@ -160,172 +160,172 @@ body {
   -webkit-animation-delay: -1s;
           animation-delay: -1s;
   background: red;
-  left: 109px;
+  left: 53px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(6) {
   border-color: red;
-  height: 9px;
-  width: 9px;
+  height: 1px;
+  width: 1px;
   -webkit-animation-delay: -1.2s;
           animation-delay: -1.2s;
   background: red;
-  left: 29px;
+  left: 118px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(7) {
   border-color: red;
-  height: 37px;
-  width: 37px;
+  height: 29px;
+  width: 29px;
   -webkit-animation-delay: -1.4s;
           animation-delay: -1.4s;
   background: red;
-  left: 49px;
+  left: 162px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(8) {
   border-color: red;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   -webkit-animation-delay: -1.6s;
           animation-delay: -1.6s;
   background: red;
-  left: 64px;
+  left: 154px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(9) {
   border-color: red;
-  height: 36px;
-  width: 36px;
+  height: 39px;
+  width: 39px;
   -webkit-animation-delay: -1.8s;
           animation-delay: -1.8s;
   background: red;
-  left: 170px;
+  left: 41px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(10) {
   border-color: red;
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
   -webkit-animation-delay: -2s;
           animation-delay: -2s;
   background: red;
-  left: 159px;
+  left: 167px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(11) {
   border-color: red;
-  height: 11px;
-  width: 11px;
+  height: 38px;
+  width: 38px;
   -webkit-animation-delay: -2.2s;
           animation-delay: -2.2s;
   background: red;
-  left: 117px;
+  left: 68px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(12) {
   border-color: red;
-  height: 40px;
-  width: 40px;
+  height: 37px;
+  width: 37px;
   -webkit-animation-delay: -2.4s;
           animation-delay: -2.4s;
   background: red;
-  left: 144px;
+  left: 67px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(13) {
   border-color: red;
-  height: 20px;
-  width: 20px;
+  height: 38px;
+  width: 38px;
   -webkit-animation-delay: -2.6s;
           animation-delay: -2.6s;
   background: red;
-  left: 93px;
+  left: 17px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(14) {
   border-color: red;
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
   -webkit-animation-delay: -2.8s;
           animation-delay: -2.8s;
   background: red;
-  left: 75px;
+  left: 104px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(15) {
   border-color: red;
-  height: 7px;
-  width: 7px;
+  height: 28px;
+  width: 28px;
   -webkit-animation-delay: -3s;
           animation-delay: -3s;
   background: red;
-  left: 54px;
+  left: 46px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(16) {
   border-color: red;
-  height: 24px;
-  width: 24px;
+  height: 3px;
+  width: 3px;
   -webkit-animation-delay: -3.2s;
           animation-delay: -3.2s;
   background: red;
-  left: 123px;
+  left: 176px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(17) {
   border-color: red;
-  height: 5px;
-  width: 5px;
+  height: 37px;
+  width: 37px;
   -webkit-animation-delay: -3.4s;
           animation-delay: -3.4s;
   background: red;
-  left: 92px;
+  left: 24px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(18) {
   border-color: red;
-  height: 29px;
-  width: 29px;
+  height: 22px;
+  width: 22px;
   -webkit-animation-delay: -3.6s;
           animation-delay: -3.6s;
   background: red;
-  left: 39px;
+  left: 91px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(19) {
   border-color: red;
-  height: 33px;
-  width: 33px;
+  height: 20px;
+  width: 20px;
   -webkit-animation-delay: -3.8s;
           animation-delay: -3.8s;
   background: red;
-  left: 116px;
+  left: 154px;
   margin-left: 60px;
 }
 
 .loader-container .loader .drip:nth-child(20) {
   border-color: red;
-  height: 29px;
-  width: 29px;
+  height: 22px;
+  width: 22px;
   -webkit-animation-delay: -4s;
           animation-delay: -4s;
   background: red;
-  left: 159px;
+  left: 1px;
   margin-left: 60px;
 }
 
