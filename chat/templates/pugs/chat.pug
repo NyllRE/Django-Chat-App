@@ -1,41 +1,134 @@
-| {% block main %}
-form
-  div
-    label(for="exampleFormControlTextarea1" class="h4 pt-5") Chatroom
-    textarea.form-control#chat-text(rows="10")
+| {% load crispy_forms_tags %}
+| {% load static %}
+html(lang="en")
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous')
+    title {{ room_name }}
+    link(rel='stylesheet' href="{% static 'chatapp/chat.css' %}" type='text/css')
+    style.
+      .other-user {
+      position: relative;
+      text-align: right;
+      right: 0;
+      background-color: rgb(99, 7, 99);
+      margin-left: auto;
+      }
+      .other-user h5 {
+      background-color: rgb(68, 10, 68);
+      padding: 5px;
+      border-radius: 15px;
+      }
+      .self-user {
+      background-color: rgb(40, 33, 106);
+      }
+      .self-user h5 {
+      background-color: rgb(35, 28, 91);
+      padding: 5px;
+      border-radius: 15px;
+      }
+  body
+    .loader-container
+      .loader
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        .drip
+        svg(xmlns='http://www.w3.org/2000/svg' version='1.1')
+          defs
+            filter#goo
+              fegaussianblur(in='SourceGraphic' stddeviation='10' result='blur')
+                fecolormatrix(in='blur' mode='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7' result='goo')
+                  feblend(in='SourceGraphic' in2='goo')
+      h1 Loading
+    header.site-header
+      nav.navbar.navbar-expand-md.navbar-dark.bg-steel.fixed-top(style='background-color: #086972;')
+        .container
+          a.navbar-brand.mr-4(href="{% url 'home' %}") RedEast Chat
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarToggle' aria-controls='navbarToggle' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarToggle.collapse.navbar-collapse
+            .navbar-nav.mr-auto
+              a.nav-item.nav-link(href="{% url 'home' %}") Home
+            // Navbar Right Side
+            | {% if user.is_authenticated %}
+            a.nav-item.nav-link(href="{% url 'profile' %}") Profile
+            a.nav-item.nav-link(href="{% url 'logout' %}") Logout
+            |                 {% else %}
+            a.nav-item.nav-link(href="{% url 'login' %}") Login
+            a.nav-item.nav-link(href="{% url 'register' %}") Register
+            |                 {% endif %}
     br
-  div
-    input.form-control#input(type="text")
-  br
-  input#submit(type="button" value="Send")
-
-  | {{ request.user.username|json_script:"user_username" }}
-  | {{ room_name|json_script:"room-name" }}
-  script
-    const user_username = JSON.parse(document.getElementById('user_username').textContent);
-    document.querySelector('#submit').onclick = function (e) {
-      const messageInputDom = document.querySelector('#input');
-      const message = messageInputDom.value;
-      chatSocket.send(JSON.stringify({
-        'message': message,
-        'username': user_username,
-      }));
-      messageInputDom.value = '';
-    };
-
-    const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
-    const chatSocket = new WebSocket(
-      'ws://' +
-      window.location.host +
-      '/ws/chat/' +
-      roomName +
-      '/'
-    );
-
-    chatSocket.onmessage = function (e) {
-      const data = JSON.parse(e.data);
-      console.log(data)
-      document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
-    }
-| {% endblock %}
+    br
+    br
+    .chat.container
+      .side-box
+        .container
+          br
+          .row.d-flex.justify-content-center
+            form(onsubmit='return false')
+              .form-group(style='text-align: center;')
+                label.h4.pt-5(for='exampleFormControlTextarea1') {{ room_name }}
+                div(style='height: auto; width: auto;')
+                  textarea#chat-text.form-control(rows='15' placeholder='{% if not user.is_authenticated %}you will not be able to see the messages till you log in{% else %}Waiting for messages...{% endif %}' style='resize: none; outline: none; overflow: auto; background-color: #071a52; color: white; width: 100%;' value='' disabled='')
+                br
+              //
+                <div class="form-group">
+                <input class="form-control" id="input" type="text" autocomplete="off">
+                </br>
+                </div>
+                {% if user.is_authenticated %}
+                <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send" style="background: linear-gradient(to right, rgb(221, 62, 84), #17b978);">
+                {% else %}
+                <a class="btn btn-secondary btn-lg btn-block" type="button" href="{% url 'login' %}">Log in first</a>
+                {% endif %}
+          | {% if user.is_authenticated %}
+          button#tester(style='margin-left: 50%;transform: translate(-50%, 0); background: rgba(30,0,50,0.3);color:white;border:none;padding:5px;border-radius:50px;')
+            | testing button
+          | {% endif %}
+      .chat-holder
+        .message-box
+          .message.other-user
+            h5.name(onclick='console.log(this.innerHTML = ("<h6>" + new Date().toString().slice(16, 24) + "</h6> | " + this.innerHTML))')
+              | RedEast Chat Site
+            h2.msg-text
+              | {% if not user.is_authenticated %}you will not be able to see the messages till you log in{% else %}Welcome To The Chat! {% endif %}
+      .scnd-row
+        .change-group
+          .row.d-flex.justify-content-center
+            br
+            form(action='' method='post')
+              | {% csrf_token %}
+              .form-group(style='text-align: center; font-size: 20px;')
+                h2 Enter New Group
+                | {{ group_add.group_name }}
+        .send-msg
+          .form-group
+            textarea#input.form-control(type='text' autocomplete='off' style='resize: none;' rows='2')
+          | {% if user.is_authenticated %}
+          input#submit.btn.btn-secondary.btn-lg.btn-block(type='button' value='Send' style='background: linear-gradient(to right, rgb(221, 62, 84), #17b978);')
+          | {% else %}
+          a.btn.btn-secondary.btn-lg.btn-block(type='button' href="{% url 'login' %}") Log in first
+          | {% endif %}
+    | {{ request.user.username|json_script:'user_username' }}
+    | {{ room_name|json_script:'room-name' }}
+    script(src="{% static 'chatapp/chat.js' %}")

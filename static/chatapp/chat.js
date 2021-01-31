@@ -1,3 +1,8 @@
+window.addEventListener('load', function(){
+  const loader = document.querySelector('.loader-container');
+  loader.className += " hidden"
+})
+
 
 addEventListener('click', document.querySelector('.name'), function() {
   console.log(this.innerHTML);
@@ -59,7 +64,6 @@ document.querySelector('#submit').onclick = function (e) {
     //   </div>
     // `);
     messageInputDom.value = '';
-    autoscroll();
 };
 
 
@@ -97,6 +101,7 @@ chatSocket.onmessage = function (e) {
     </h2>
 </div>
   `);
+  autoscroll();
 }
 
 var messages = document.querySelector('.message-box');

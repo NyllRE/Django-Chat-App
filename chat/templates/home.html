@@ -1,126 +1,70 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Document</title>
-		<style>
-
-		</style>
-		<link rel="stylesheet" href="{% static 'chatapp/main.css' %}" type="text/css">
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<a href="https://discord.link/redeast">
-					<img
-						src="https://cdn.discordapp.com/attachments/745413985515471058/801066875341242428/ReMicrosoftApple1.1.png"
-						alt="RE Logo"
-						srcset=""
-						onmousedown="console.log('bruh')"
-					/>
-				</a>
-				<div class="h-links-holder">
-          {% block nav %}
-          <a
-          href="{% url 'profile' %}"
-          class="h-links"
-          >Profile</a>
-          {% endblock %}
-          {% if not user.is_authenticated %}
-					<a
-						href="{% url 'login' %}"
-						class="h-links"
-						> - Log In</a
-          >
-          {% endif %}
-        </div>
-			</header>
-			<div class="content">
-				<h1 class="ml3"
-					>{% block first-title %}Welcome to
-					RedEast's Chat App{% endblock %}</h1
-				>
-				<h1
-					class="ml4"
-					>{% block title %}Get Started With The
-          Worst Chatting Website Now!
-          {%endblock%}</h1
-				>
-				<br />
-				<br />
-				{% block buttons %} {% if user.is_authenticated %}
-				<a class="ml-2" href="/chat/main">
-					<button class="ml-3">
-						Enter Main Chat
-					</button>
-				</a>
-				{% else %}
-				<a class="ml-2" href="/register">
-					<button
-						class="ml-3"
-						style="
-							background: linear-gradient(
-								to left,
-								rgb(192, 21, 81),
-								red
-							);
-							color: white;
-						"
-					>
-						Register
-					</button>
-				</a>
-				{% endif %} {% endblock %}
-			</div>
-		</div>
-		<script src="{% static 'anime.min.js' %}"></script>
-		<script>
-
-			var textWrapper = document.querySelector('.ml3');
-			var textWrapper2 = document.querySelector('.ml4');
-			textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-			textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, "<span class='letter2'>$&</span>");
-
-			anime.timeline({loop: false})
-				.add({
-					targets: '.h-links-holder .h-links',
-					delay: 1000,
-					opacity: [0,1],
-					translateY: ['-50px', 0],
-					duration: 500,
-			    easing: "easeInOutQuad",
-				}).add({
-			    targets: '.ml3 .letter',
-			    delay: 1500,
-			    opacity: [0,1],
-			    easing: "easeInOutQuad",
-			    duration: 1000,
-			    delay: (el, i) => 50 * (i+1),
-			  }).add({
-			    targets: '.ml3',
-			    opacity: 0,
-			    duration: 400,
-			    easing: "easeOutExpo",
-			    delay: 200,
-			    scale: 0.9
-			  }){% block anime %}.add({    //this is the button
-			    targets: '.ml-2 .ml-3',
-			    duration: 300,
-			    delay: 0,
-			    opacity: [0,1]
-			  }){% endblock %}.add({
-			    targets: '.ml4 .letter2',
-			    opacity: [0,1],
-			    duration: 3000,
-			    delay: 500,
-			    /* scale: 1, */
-			    delay: (el, i) => 40 * (i+1)
-				});
-		</script>
-	</body>
-</html>
+<!DOCTYPE html>{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style></style>
+  <link rel="stylesheet" href="{% static 'chatapp/main.css' %}" type="text/css">
+</head>
+<div class="container">
+  <header><a href="https://discord.link/redeast"><img src="https://cdn.discordapp.com/attachments/745413985515471058/801066875341242428/ReMicrosoftApple1.1.png" alt="RE Logo" srcset="" onmousedown="console.log('bruh')"></a>
+    <div class="h-links-holder">{% block nav %}<a class="h-links" href="{% url 'profile' %}">Profile</a>          {% endblock %}
+                {% if not user.is_authenticated %}<a class="h-links" href="{% url 'login' %}"> - Log In</a>          {% endif %}
+    </div>
+  </header>
+  <div class="content">
+    <h1 class="ml3">
+      {% block first-title %}Welcome to
+      RedEast&apos;s Chat App{% endblock %}
+    </h1>
+    <h1 class="ml4">
+      {% block title %}Get Started With The
+      Worst Chatting Website Now!
+      {%endblock%}
+    </h1><br><br>{% block buttons %} {% if user.is_authenticated %}<a class="ml-2" href="/chat/main">
+      <button class="ml-3">Enter Main Chat</button></a>{% else %}<a class="ml-2" href="/register">
+      <button class="ml-3" style="      background: linear-gradient(      to left,      rgb(192, 21, 81),      red      );      color: white;      ">Register</button></a>{% endif %} {% endblock %}
+  </div>
+</div>
+<script src="{% static 'anime.min.js' %}"></script>
+<script>
+  var textWrapper = document.querySelector('.ml3');
+  var textWrapper2 = document.querySelector('.ml4');
+  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, "<span class='letter2'>$&</span>");
+  anime.timeline({loop: false})
+  .add({
+  targets: '.h-links-holder .h-links',
+  delay: 1000,
+  opacity: [0,1],
+  translateY: ['-50px', 0],
+  duration: 500,
+  easing: "easeInOutQuad",
+  }).add({
+  targets: '.ml3 .letter',
+  delay: 1500,
+  opacity: [0,1],
+  easing: "easeInOutQuad",
+  duration: 1000,
+  delay: (el, i) => 50 * (i+1),
+  }).add({
+  targets: '.ml3',
+  opacity: 0,
+  duration: 400,
+  easing: "easeOutExpo",
+  delay: 200,
+  scale: 0.9
+  }){% block anime %}.add({    //this is the button
+  targets: '.ml-2 .ml-3',
+  duration: 300,
+  delay: 0,
+  opacity: [0,1]
+  }){% endblock %}.add({
+  targets: '.ml4 .letter2',
+  opacity: [0,1],
+  duration: 3000,
+  delay: 500,
+  /* scale: 1, */
+  delay: (el, i) => 40 * (i+1)
+  });
+</script>

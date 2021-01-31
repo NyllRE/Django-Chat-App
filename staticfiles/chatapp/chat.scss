@@ -5,69 +5,110 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family:Arial, Helvetica, sans-serif;
+  background: rgb(41, 0, 75);
+  color: white;
 }
 
-.loader {
-  width: 300px;
-  height: 230px;
-  position: relative;
-  overflow: hidden;
-  border-top: 15px solid black;
-  border-bottom: 15px solid black;
+::-webkit-scrollbar {
+  width: 10px;
   border-radius: 10px;
-  filter: url("#goo");
+  z-index: -1;
+}
 
-  .drip {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: black;
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(72, 0, 131);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(41, 0, 75);
+  border-radius: 5px;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.hidden {
+  animation: fadeOut 1s 2s;
+  animation-fill-mode: forwards;
+}
+.loader-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(41, 0, 75);
+
+  .loader {
+    width: 300px;
+    height: 230px;
     position: absolute;
-    top: -100%;
-    animation: falling 5s linear infinite;
-  }
+    overflow: hidden;
+    border-top: 15px solid rgb(255, 0, 0);
+    border-bottom: 15px solid rgb(255, 0, 0);
+    border-radius: 10px;
+    filter: url("#goo");
 
-  @keyframes falling {
-    0% {
+    .drip {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background: rgb(255, 0, 0);
+      position: absolute;
       top: -100%;
-    }
-    50% {
-      top: 0%;
-    }
-    80% {
-      top: 80%;
+      animation: falling 5s linear infinite;
     }
 
-    100% {
-      top: 100%;
-    }
-  }
+    @keyframes falling {
+      0% {
+        top: -100%;
+      }
+      50% {
+        top: 0%;
+      }
+      80% {
+        top: 80%;
+      }
 
-  @for $i from 1 through 20 {
-    .drip:nth-child(#{$i}) {
-      border-color: black;
-      $size: random(40) + px;
-      height: $size;
-      width: $size;
-      animation-delay: -$i * 0.2s;
-      background: black;
-      left: random(180) + px;
-      margin-left: 60px;
+      100% {
+        top: 100%;
+      }
+    }
+
+    @for $i from 1 through 20 {
+      .drip:nth-child(#{$i}) {
+        border-color: rgb(255, 0, 0);
+        $size: random(40) + px;
+        height: $size;
+        width: $size;
+        animation-delay: -$i * 0.2s;
+        background: rgb(255, 0, 0);
+        left: random(180) + px;
+        margin-left: 60px;
+      }
     }
   }
 }
+
 
 
 
 .chat {
   display: table;
   width: 100%;
-  height: 93%;
+  height: 80%;
 }
 .side-box {
   width: 20%;
@@ -87,13 +128,14 @@ body {
   width: 60%;
   right: 0;
   display: table-cell;
-  border-top-right-radius: 30px;
+  border-top-right-radius: 10px;
   padding: 5px;
 }
 .message-box {
   width: 100%;
   height: 100%;
   overflow: auto;
+
 }
 .message {
   background: #000;
@@ -146,10 +188,10 @@ body {
 }
 .send-msg {
   display: table-cell;
-  
+
   
   background-color: rgb(33, 1, 68);
   padding: 5px;
   height: 10%;
-  border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 10px;
 }

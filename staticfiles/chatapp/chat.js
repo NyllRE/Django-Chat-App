@@ -1,3 +1,8 @@
+window.addEventListener('load', function(){
+  const loader = document.querySelector('.loader-container');
+  loader.className += " hidden"
+})
+
 
 addEventListener('click', document.querySelector('.name'), function() {
   console.log(this.innerHTML);
@@ -59,7 +64,6 @@ document.querySelector('#submit').onclick = function (e) {
     //   </div>
     // `);
     messageInputDom.value = '';
-    autoscroll();
 };
 
 
@@ -97,11 +101,17 @@ chatSocket.onmessage = function (e) {
     </h2>
 </div>
   `);
+  autoscroll();
 }
 
-var $messages = document.querySelector('.message-box');
+var messages = document.querySelector('.message-box');
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const autoscroll = () => {
-  $messages.scrollTop = $messages.scrollHeight;
+sleep(10).then(() => { messages.scrollTop = messages.scrollHeight; });
 }
 
 document.querySelector('#tester').onclick = function (e) {
