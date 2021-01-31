@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '6-ti5e--l=23fjw-ji_!gs_)%b_sktnekm66f)_=iiyz5oe6hf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -138,9 +138,9 @@ ASGI_APPLICATION = 'ChatApp.routing.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': "channels.layers.InMemoryChannelLayer",
-        # 'CONFIG': {
-        #     "hosts": [os.environ.get('REDIS_URL')],
-        # }
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL')],
+        }
     }
 }
 CACHES = {
